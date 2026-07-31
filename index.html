@@ -8,7 +8,7 @@
   <!-- Google Fonts: Manrope и Playfair Display -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     /* Сброс и базовые стили */
@@ -30,21 +30,25 @@
       font-weight: 400;
       color: #F1F0EC;
       line-height: 1.5;
-      display: flex;
-      flex-direction: column;
       min-height: 100%;
+      background: url('bg.jpg') center center / cover no-repeat fixed;
     }
 
-    /* Фоновое изображение на весь экран */
+    /* Обёртка страницы: фон тянется под подвал на мобильных */
+    .site {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Основной блок с затемнением */
     .page {
       flex: 1;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 2rem 1.5rem 2.5rem;
-      background: url('bg.jpg') center center / cover no-repeat fixed;
       position: relative;
     }
 
@@ -53,7 +57,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.55);
       z-index: 0;
     }
 
@@ -72,7 +76,7 @@
 
     /* Логотип */
     .logo {
-      width: 150px;
+      width: 252px;
       height: auto;
       display: block;
     }
@@ -80,10 +84,14 @@
     /* Заголовок */
     .heading {
       font-family: 'Playfair Display', serif;
-      font-weight: 700;
+      font-weight: 400;
       font-size: clamp(1.25rem, 4vw, 1.75rem);
       line-height: 1.4;
       max-width: 520px;
+    }
+
+    .heading em {
+      font-style: italic;
     }
 
     /* Сетка кнопок соцсетей: 2×2 на десктопе, столбик на мобильных */
@@ -98,12 +106,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.875rem 1.25rem;
+      padding: 1.01rem 1.44rem;
       background-color: #4D4D35;
       color: #F1F0EC;
       font-family: 'Manrope', sans-serif;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 1.15rem;
       text-decoration: none;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -123,6 +131,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
+      width: 100%;
     }
 
     .contact-label {
@@ -133,39 +142,29 @@
     }
 
     .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 1.01rem 1.44rem;
       font-family: 'Manrope', sans-serif;
       font-weight: 500;
-      font-size: 1.05rem;
+      font-size: 1.21rem;
       color: #F1F0EC;
       text-decoration: none;
-      transition: opacity 0.2s ease;
+      background: transparent;
+      border: 1.5px solid #4D4D35;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .contact-link:hover,
     .contact-link:active,
     .contact-link:focus-visible {
-      opacity: 0.75;
-      text-decoration: underline;
-    }
-
-    /* Ссылка на сайт */
-    .site-link {
-      font-family: 'Manrope', sans-serif;
-      font-weight: 500;
-      font-size: 1.05rem;
-      color: #F1F0EC;
-      text-decoration: none;
-      padding: 0.625rem 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      transition: opacity 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .site-link:hover,
-    .site-link:active,
-    .site-link:focus-visible {
-      opacity: 0.75;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border-color: #354221;
+      background-color: rgba(53, 66, 33, 0.25);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
     }
 
     /* Подвал с юридической информацией */
@@ -214,12 +213,17 @@
 
     /* Адаптивность для мобильных устройств */
     @media (max-width: 480px) {
+      body {
+        background-attachment: scroll;
+        background-size: cover;
+      }
+
       .page {
         padding: 1.5rem 1rem;
       }
 
       .logo {
-        width: 120px;
+        width: 210px;
       }
 
       .content {
@@ -233,6 +237,14 @@
 
       .social-btn {
         width: 100%;
+      }
+
+      .contact-block {
+        width: 80%;
+      }
+
+      .footer {
+        margin-top: 5px;
       }
     }
 
@@ -251,6 +263,7 @@
   </style>
 </head>
 <body>
+  <div class="site">
   <main class="page">
     <div class="content">
 
@@ -259,7 +272,7 @@
 
       <!-- Главный заголовок -->
       <h1 class="heading">
-        Пространство, где можно остановиться. Замедлиться. Снова почувствовать своё тело
+        Пространство, где можно остановиться. <em>Замедлиться.</em> Снова почувствовать своё тело
       </h1>
 
       <!-- Кнопки соцсетей -->
@@ -269,6 +282,12 @@
         <a href="https://vk.ru/siberian_tradition" class="social-btn" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
         <a href="https://max.ru/channel_sibirspa" class="social-btn" target="_blank" rel="noopener noreferrer">MAX</a>
       </nav>
+
+      <!-- Ссылка на сайт -->
+      <div class="contact-block">
+        <span class="contact-label">Наш сайт</span>
+        <a href="https://sibirspa.ru/" class="contact-link" target="_blank" rel="noopener noreferrer">sibirspa.ru</a>
+      </div>
 
       <!-- Телефон -->
       <div class="contact-block">
@@ -285,12 +304,6 @@
           target="_blank"
           rel="noopener noreferrer"
         >г. Санкт-Петербург, Б.Сампсониевский пр-т, 77/7</a>
-      </div>
-
-      <!-- Ссылка на сайт -->
-      <div class="contact-block">
-        <span class="contact-label">Наш сайт</span>
-        <a href="https://sibirspa.ru/" class="site-link" target="_blank" rel="noopener noreferrer">sibirspa.ru</a>
       </div>
 
     </div>
@@ -310,5 +323,6 @@
       </div>
     </div>
   </footer>
+  </div>
 </body>
 </html>
