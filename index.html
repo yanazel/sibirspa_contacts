@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сибирские традиции — таёжный спа</title>
+
+  <!-- Google Fonts: Manrope и Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Сброс и базовые стили */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      color: #F1F0EC;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    /* Фоновое изображение на весь экран */
+    .page {
+      flex: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem 2.5rem;
+      background: url('bg.jpg') center center / cover no-repeat fixed;
+      position: relative;
+    }
+
+    /* Полупрозрачный тёмный слой для читаемости текста */
+    .page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    /* Контент поверх затемнения */
+    .content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.75rem;
+    }
+
+    /* Логотип */
+    .logo {
+      width: 150px;
+      height: auto;
+      display: block;
+    }
+
+    /* Заголовок */
+    .heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 4vw, 1.75rem);
+      line-height: 1.4;
+      max-width: 520px;
+    }
+
+    /* Сетка кнопок соцсетей: 2×2 на десктопе, столбик на мобильных */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.875rem;
+      width: 100%;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 1.25rem;
+      background-color: #4D4D35;
+      color: #F1F0EC;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .social-btn:hover,
+    .social-btn:active,
+    .social-btn:focus-visible {
+      background-color: #354221;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Контактные блоки */
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-label {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .contact-link {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: #F1F0EC;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .contact-link:hover,
+    .contact-link:active,
+    .contact-link:focus-visible {
+      opacity: 0.75;
+      text-decoration: underline;
+    }
+
+    /* Ссылка на сайт */
+    .site-link {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: #F1F0EC;
+      text-decoration: none;
+      padding: 0.625rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .site-link:hover,
+    .site-link:active,
+    .site-link:focus-visible {
+      opacity: 0.75;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Подвал с юридической информацией */
+    .footer {
+      background-color: #354221;
+      color: #F1F0EC;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 30px 20px;
+    }
+
+    .footer__inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+    }
+
+    .footer__col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .footer__col--legal {
+      text-align: left;
+    }
+
+    .footer__col--links {
+      text-align: right;
+    }
+
+    .footer__link {
+      color: #F1F0EC;
+      text-decoration: none;
+      transition: text-decoration 0.2s ease;
+    }
+
+    .footer__link:hover,
+    .footer__link:active,
+    .footer__link:focus-visible {
+      text-decoration: underline;
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 480px) {
+      .page {
+        padding: 1.5rem 1rem;
+      }
+
+      .logo {
+        width: 120px;
+      }
+
+      .content {
+        width: 100%;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+        width: 80%;
+      }
+
+      .social-btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 599px) {
+      .footer__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer__col--legal,
+      .footer__col--links {
+        text-align: center;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="content">
+
+      <!-- Логотип компании -->
+      <img src="logo.png" alt="Сибирские традиции" class="logo">
+
+      <!-- Главный заголовок -->
+      <h1 class="heading">
+        Пространство, где можно остановиться. Замедлиться. Снова почувствовать своё тело
+      </h1>
+
+      <!-- Кнопки соцсетей -->
+      <nav class="social-grid" aria-label="Социальные сети">
+        <a href="https://www.instagram.com/sibirspa.ru" class="social-btn" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://t.me/siberian_tradition" class="social-btn" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://vk.ru/siberian_tradition" class="social-btn" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+        <a href="https://max.ru/channel_sibirspa" class="social-btn" target="_blank" rel="noopener noreferrer">MAX</a>
+      </nav>
+
+      <!-- Телефон -->
+      <div class="contact-block">
+        <span class="contact-label">Телефон</span>
+        <a href="tel:+79801017717" class="contact-link">+7 (980) 101-77-17</a>
+      </div>
+
+      <!-- Адрес с ссылкой на Яндекс.Карты -->
+      <div class="contact-block">
+        <span class="contact-label">Адрес</span>
+        <a
+          href="https://yandex.ru/maps/?text=%D0%B3.%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%2C%20%D0%91.%D0%A1%D0%B0%D0%BC%D0%BF%D1%81%D0%BE%D0%BD%D0%B8%D0%B5%D0%B2%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BF%D1%80-%D1%82%2C%2077%2F7"
+          class="contact-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >г. Санкт-Петербург, Б.Сампсониевский пр-т, 77/7</a>
+      </div>
+
+      <!-- Ссылка на сайт -->
+      <div class="contact-block">
+        <span class="contact-label">Наш сайт</span>
+        <a href="https://sibirspa.ru/" class="site-link" target="_blank" rel="noopener noreferrer">sibirspa.ru</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Подвал с юридической информацией -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col footer__col--legal">
+        <p>ИП ЕВДОКИМОВ ВЛАДИМИР ГЕННАДЬЕВИЧ</p>
+        <p>ИНН: 463223756035</p>
+        <p>ОГРНИП: 326470400001277</p>
+      </div>
+      <div class="footer__col footer__col--links">
+        <a href="https://sibirspa.ru/politika-konfidenczialnosti" class="footer__link" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</a>
+        <a href="https://sibirspa.ru/publichnaya-oferta-uslugi" class="footer__link" target="_blank" rel="noopener noreferrer">Договор публичной оферты</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
